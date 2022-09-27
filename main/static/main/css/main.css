@@ -1,3 +1,27 @@
-body {
-    background: red;
+body{
+    background: #3e443e;
+}
+
+.menu{
+    width: 100%;
+	display: flex;
+    margin-left: 16px
+    
+    
+}
+.menu ul {
+	display: flex;
+    margin-left: 16px;
+    margin-top: 40px;
+    justify-content:flex-end
+     
+}
+.menu li {
+
+	display: table-cell;  
+}
+
+.logo{
+    margin-left: 5px;
+    margin-top: 40px
 }
