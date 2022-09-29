@@ -10,5 +10,8 @@ from django.urls import path, include
 
 
 urlpatterns = [
-    path('', include('main.urls'))
+    #приложения main
+    path('', include('main.urls') ),
+    #приложения news
+    path('news/', include('news.urls') ),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
