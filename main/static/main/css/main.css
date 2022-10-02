@@ -1,6 +1,5 @@
 
-
-* {
+*,*:before,*:after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,10 +7,6 @@
     list-style-type: none;
 }
 
-.container{
-    margin: 0 20px;
-    padding: 10px 5px;
-}
 
 .menu{
     display: flex;
@@ -22,30 +17,43 @@
 
 .logo{
     display: block;
+    padding: 15px 0px;
+    border-bottom: 2px solid red;
+    
 }
 
 .logo a{
-    border-bottom: 2px solid red;
+    
+
 }
 
-.logo a:hover{
+.logo:hover{
     border-bottom-color: blue;
+    
 }
 
 .navigation{
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    background-color: burlywood;
+    align-items: center;
+    flex-wrap: wrap;
+
 }
 
 .navigation li{
-    margin-left: 20px;
-    padding: 8px 15px;
-    transform: translate(100px,0);
+    padding: 8px 1px;
+    
+    
+
 }
 
 .navigation li:first-child{
-    margin-left: 0px;
+    padding-left:0;
 }
 .login{
-    transform: translate(550px,0);
+    
 }
