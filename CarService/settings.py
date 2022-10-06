@@ -36,6 +36,8 @@ INSTALLED_APPS = [
 
 #перенаправления пользователей после авториризации
 LOGIN_REDIRECT_URL = "home"
+#перенаправления пользователей после выхода
+LOGOUT_REDIRECT_URL = 'home'
 
 
 
