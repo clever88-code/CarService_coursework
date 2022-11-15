@@ -22,10 +22,7 @@
     
 }
 
-.logo a{
-    
 
-}
 
 .logo:hover{
     border-bottom-color: blue;
@@ -53,7 +50,4 @@
 
 .navigation li:first-child{
     padding-left:0;
-}
-.login{
-    
 }
