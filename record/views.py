@@ -23,6 +23,6 @@ class CarFormView(FormView):
     def form_valid(self, form):
         
 
-        q = Cars.objects.create(**form.cleaned_data)
-        print(q)
+        Cars.objects.create(**form.cleaned_data)
+        
         return super().form_valid(form)
