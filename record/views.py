@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView ,FormView
-from core.models import CarMarks, Cars, Firms
+from core.models import Cars
 from record.forms import CarForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -23,5 +23,6 @@ class CarFormView(FormView):
     def form_valid(self, form):
         
 
-        Cars.objects.create(**form.cleaned_data)
+        q = Cars.objects.create(**form.cleaned_data)
+        print(q)
         return super().form_valid(form)

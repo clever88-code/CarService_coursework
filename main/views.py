@@ -8,15 +8,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import *
 
-# Create your views here.
+
 
 
 
 def index(request):
     return render(request, 'main/index.html' )
 
-def login(request):
-    return render(request, 'main/login.html' )
+
 
 
 

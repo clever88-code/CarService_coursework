@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms'
     
 ]
 
@@ -39,7 +40,9 @@ INSTALLED_APPS = [
 LOGIN_REDIRECT_URL = "home"
 #перенаправления пользователей после выхода
 LOGOUT_REDIRECT_URL = 'home'
+# библиотека для форм
 
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 
 

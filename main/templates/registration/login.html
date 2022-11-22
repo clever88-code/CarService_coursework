@@ -1,14 +1,17 @@
 {% extends 'main/general.html' %}
 
 
+{% block title %}Авторизация{% endblock %} 
+
 {% block body %}
 
 
 
 <div class="container d-flex justify-content-center align-items-center mx-auto py-4">
 <form method="post">
-    {% csrf_token %}
     <h1>Авторизация</h1>
+    <h1>test</h1>
+    {% csrf_token %}
 
 <div class="form-error">{{ form.non_field_errors }}</div>
 
@@ -20,7 +23,7 @@
     <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
 </form>
 </div>
-  {% endblock  %} 
+  {% endblock %} 
 
 
 

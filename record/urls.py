@@ -6,5 +6,5 @@ from .views import CarFormView
 app_name = "record"
 
 urlpatterns = [  
-    path('', CarFormView.as_view(), name="create_pan")
+    path('', CarFormView.as_view(), name="record")
 ]
