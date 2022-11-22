@@ -1,3 +1,6 @@
+.asteriskField {
+    display: none;
+}
 
 *,*:before,*:after {
     margin: 0;
