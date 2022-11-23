@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView ,FormView
+from requests import request
 from core.models import Cars
 from record.forms import CarForm
 from django.contrib.auth.decorators import login_required
@@ -21,7 +22,12 @@ class CarFormView(FormView):
     success_url = '/record'
 
     def form_valid(self, form):
+
         
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.save()
 
         Cars.objects.create(**form.cleaned_data)
         
