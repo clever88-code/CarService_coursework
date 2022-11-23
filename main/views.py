@@ -9,16 +9,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import *
 
 
-
-
-
 def index(request):
-    return render(request, 'main/index.html' )
+    return render(request, 'main/index.html')
+
 
 def eror_record(request):
-    return render(request, 'main/record_error.html' )
-
-
+    return render(request, 'main/record_error.html')
 
 
 class Register(CreateView):
