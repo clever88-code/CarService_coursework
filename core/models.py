@@ -68,15 +68,12 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Cars(models.Model):
-    car_number = models.CharField('Номера автомобиля', default="" ,max_length=9)
-    auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, to_field=None)
-    firms = models.CharField('Фирма автомобиля', default="" ,max_length=40)
-    mark = models.CharField('Марка автомобиля', default="",max_length=255)
-
-
+    car_number = models.CharField('Номера автомобиля', default="", max_length=9)
+    auth_user = models.ForeignKey(AuthUser, on_delete=models.CASCADE, null=True, blank=True)
+    firms = models.CharField('Фирма автомобиля', default="", max_length=40)
+    mark = models.CharField('Марка автомобиля', default="", max_length=255)
 
     class Meta:
-        managed = False
         db_table = 'cars'
 
 

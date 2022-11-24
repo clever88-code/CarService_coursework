@@ -3,15 +3,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView
 from . import views
+
 urlpatterns = [
-    
-    
+
     path('', views.index, name='home'),
-    path('login', views.LoginUser.as_view(),name='login'),
+    path('login', views.LoginUser.as_view(), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
     path("registration/", views.Register.as_view(), name="registration"),
     path('eror/', views.eror_record, name='eror'),
 
 ]
-
-
