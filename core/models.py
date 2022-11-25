@@ -169,8 +169,11 @@ class OrdersMaterials(models.Model):
 
 class Records(models.Model):
     car = models.ForeignKey(Cars, models.DO_NOTHING, to_field=None)
-    date = models.TextField()
-    record_text = models.TextField()
+    date = models.DateField('Дата записи')
+    description = models.TextField('Описание проблемы')
+
+    def __str__(self):
+        return self.car.car_number
 
     class Meta:
         managed = False

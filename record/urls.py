@@ -2,10 +2,10 @@ from argparse import ArgumentDefaultsHelpFormatter
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView
-from .views import CarFormView
+from .views import RecordView
 
 app_name = "record"
 
 urlpatterns = [
-    path('', CarFormView.as_view(), name="record")
+    path('', RecordView.as_view(), name="record")
 ]
