@@ -1,5 +1,5 @@
 # from botTG import token, chat_id
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from requests import request
 from core.models import Cars
@@ -25,8 +25,9 @@ class RecordView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         car_form = CarForm
-        record_form = RecordForm
+        record_form = RecordForm(user_id=request.user.id)
         context = self.get_context_data(**kwargs)
+        # record_form.car.queryset = Cars.objects.filter(auth_user_id=request.user.id)
         context['car_form'] = car_form
         context['record_form'] = record_form
         return self.render_to_response(context)
@@ -52,12 +53,21 @@ class CarFormView(FormView):
 class RecordFormView(FormView):
     template_name = 'record.html'
     form_class = RecordForm
-    success_url = '/record'
+    success_url = reverse_lazy('record:record')
     bot = telebot.TeleBot(token)
 
-    def form_valid(self, form):
-        if form.is_valid():
-            bot = telebot.TeleBot(token)
-            bot.send_message(chat_id=chat_id, text='Есть заполненая запись!🔥🔥🔥')
+    # def form_valid(self, form):
+    #     print('asdasd')
+    #     if form.is_valid():
+    #         bot = telebot.TeleBot(token)
+    #         bot.send_message(chat_id=chat_id, text='Есть заполненная запись!🔥🔥🔥')
+    #
+    #     return super().form_valid(form)
 
-        return super().form_valid(form)
+
+def add_record_view(request):
+    if request.POST:
+        form = RecordForm(request.POST)
+        if form.is_valid():
+            form.save()
+    return redirect('/record/')

@@ -40,14 +40,14 @@
         <div class="tab-pane fade" id="record" role="tabpanel" aria-labelledby="record-tab" tabindex="0">
             <div class="card w-100">
                 <div class="card-body">
-                    <form method="post">
+                    <form method="post" action="{% url 'record:add_record' %}">
                         {% csrf_token %}
                         {{ record_form|crispy }}
                         {# {% for f in form %} #}
                         {# <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }} </p> #}
                         {# <div class="form-error">{{ f.errors }}</div >#}
                         {# {% endfor %} #}
-                        <button class="w-100 btn btn-lg btn-primary mt-4" type="submit">Записаться</button>
+                        <button class="w-100 btn btn-lg btn-primary mt-4" type="submit" href="{% url 'record:add_record' %}">Записаться</button>
                     </form>
                 </div>
             </div>

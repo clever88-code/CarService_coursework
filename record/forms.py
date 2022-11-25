@@ -12,14 +12,16 @@ class CarForm(forms.ModelForm):
     #        bill = Bill.objects.get(form.cleaned_data['pk'])
     # else:
     #    form = BillSelectForm()
-    def __init__(self, *args,**kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['car_number'].widget.attrs.update({'placeholder' : 'Введите гос.номер'})
-        self.fields['firms'].widget.attrs.update({'placeholder' : 'Введите название фирмы'})
-        self.fields['mark'].widget.attrs.update({'placeholder' : 'Введите марку автомибиля'})
+        self.fields['car_number'].widget.attrs.update({'placeholder': 'Введите гос.номер'})
+        self.fields['firms'].widget.attrs.update({'placeholder': 'Введите название фирмы'})
+        self.fields['mark'].widget.attrs.update({'placeholder': 'Введите марку автомибиля'})
+
     class Meta:
         model = Cars
         fields = ['car_number', 'firms', 'mark']
+
 
 class RecordForm(forms.ModelForm):
     # if request.method == 'POST':
@@ -28,9 +30,11 @@ class RecordForm(forms.ModelForm):
     #        bill = Bill.objects.get(form.cleaned_data['pk'])
     # else:
     #    form = BillSelectForm()
-    def __init__(self, *args,**kwargs):
+    def __init__(self, user_id, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['description'].widget.attrs.update({'placeholder' : 'Введите описание проблемы','rows':'2'})
+        self.fields['description'].widget.attrs.update({'placeholder': 'Введите описание проблемы', 'rows': '2'})
+        self.fields['car'].queryset = Cars.objects.filter(auth_user_id=user_id)
+
     class Meta:
         model = Records
         fields = ['car', 'date', 'description']

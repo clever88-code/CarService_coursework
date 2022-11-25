@@ -76,6 +76,9 @@ class Cars(models.Model):
     class Meta:
         db_table = 'cars'
 
+    def __str__(self):
+        return f'{self.car_number}'
+
 
 class DjangoAdminLog(models.Model):
     object_id = models.TextField(blank=True, null=True)
@@ -171,9 +174,6 @@ class Records(models.Model):
     car = models.ForeignKey(Cars, models.DO_NOTHING, to_field=None)
     date = models.DateField('Дата записи')
     description = models.TextField('Описание проблемы')
-
-    def __str__(self):
-        return self.car.car_number
 
     class Meta:
         managed = False
