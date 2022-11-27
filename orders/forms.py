@@ -6,7 +6,7 @@ from core.models import AuthUser, Records, Orders
 
 
 class OrderForm(forms.ModelForm):
-
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['completed_work'].widget.attrs.update({'placeholder': 'Укажите выполненную работу'})
