@@ -171,10 +171,9 @@ class OrdersMaterials(models.Model):
 
 
 class Records(models.Model):
-    car = models.ForeignKey(Cars, models.DO_NOTHING, to_field=None)
+    car = models.ForeignKey(Cars, on_delete=models.CASCADE)
     date = models.DateField('Дата записи')
     description = models.TextField('Описание проблемы')
 
     class Meta:
-        managed = False
         db_table = 'records'
