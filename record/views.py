@@ -32,6 +32,20 @@ class RecordView(TemplateView):
         context['record_form'] = record_form
         return self.render_to_response(context)
 
+    def post(self, request):
+        form = CarForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            car = Cars(car_number=form.cleaned_data['car_number'],
+                       auth_user=request.user,
+                       firms=form.cleaned_data['firms'],
+                       mark=form.cleaned_data['mark'],
+                       commit=False)
+            car.save()
+            return HttpResponse("Car added")  # По хорошему тут что то заюзать по типу flash во flask
+        return HttpResponse("Super string")  # Кидай на это же класс но метод GET
+        # Code here
+
 
 class CarFormView(FormView):
     template_name = 'record.html'
@@ -46,7 +60,6 @@ class CarFormView(FormView):
             obj.save()
             bot = telebot.TeleBot(token)
             bot.send_message(chat_id=chat_id, text='Добавлен автомобиль!🔥🔥🔥')
-
         return super().form_valid(form)
 
 
