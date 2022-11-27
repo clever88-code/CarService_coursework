@@ -55,7 +55,57 @@
     </div>
 </div>
 <script>
-        deleteAsteriskFields()
-        itemFormRow()
+    deleteAsteriskFields()
+    itemFormRow()
+    IMask(document.getElementById('id_date'), {
+      mask: Date,
+      pattern: 'DD.MM.YYYY HH:mm',
+      lazy: false,
+
+      format: function (date) {
+        return moment(date).format('DD.MM.YYYY HH:mm');
+      },
+      parse: function (str) {
+        return moment(str, 'DD.MM.YYYY HH:mm');
+      },
+
+      blocks: {
+        YYYY: {
+          mask: IMask.MaskedRange,
+          from: 1970,
+          to: 2030
+        },
+        MM: {
+          mask: IMask.MaskedRange,
+          from: 1,
+          to: 12
+        },
+        DD: {
+          mask: IMask.MaskedRange,
+          from: 1,
+          to: 31
+        },
+        HH: {
+          mask: IMask.MaskedRange,
+          from: 0,
+          to: 23
+        },
+        mm: {
+          mask: IMask.MaskedRange,
+          from: 0,
+          to: 59
+        }
+      }
+    })
+</script>
+<script>
+    $('#id_date').datetimepicker({
+        container:'body',
+        language:'ru',
+        minuteStep:5,
+        format:'dd.mm.yyyy hh:ii',
+        weekStart:1,
+        startDate: new Date()
+    })
 </script>
 {% endblock %}

@@ -67,19 +67,6 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
-class Cars(models.Model):
-    car_number = models.CharField('Номера автомобиля', default="", max_length=9)
-    auth_user = models.ForeignKey(AuthUser, on_delete=models.CASCADE, null=True, blank=True)
-    firms = models.CharField('Фирма автомобиля', default="", max_length=40)
-    mark = models.CharField('Марка автомобиля', default="", max_length=255)
-
-    class Meta:
-        db_table = 'cars'
-
-    def __str__(self):
-        return f'{self.car_number}'
-
-
 class DjangoAdminLog(models.Model):
     object_id = models.TextField(blank=True, null=True)
     object_repr = models.CharField(max_length=200)
@@ -142,38 +129,63 @@ class Materials(models.Model):
         db_table = 'materials'
 
 
-class Orders(models.Model):
-    auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, to_field=None)
-    record = models.ForeignKey('Records', models.DO_NOTHING, to_field=None)
+# class Orders(models.Model):
+#     auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, to_field=None)
+#     record = models.ForeignKey('Records', models.DO_NOTHING, to_field=None)
+#
+#     class Meta:
+#         managed = False
+#         db_table = 'orders'
+
+
+# class OrdersMachineTools(models.Model):
+#     order = models.OneToOneField(Orders, models.DO_NOTHING, primary_key=True)
+#     machine_tool = models.ForeignKey(MachineTools, models.DO_NOTHING, to_field=None)
+#     quantity = models.IntegerField()
+#
+#     class Meta:
+#         managed = False
+#         db_table = 'orders_machine tools'
+#
+#
+# class OrdersMaterials(models.Model):
+#     order = models.OneToOneField(Orders, models.DO_NOTHING, primary_key=True)
+#     materials = models.ForeignKey(Materials, models.DO_NOTHING, to_field=None)
+#
+#     class Meta:
+#         managed = False
+#         db_table = 'orders_materials'
+
+class Cars(models.Model):
+    car_number = models.CharField('Номера автомобиля', default="", max_length=9)
+    auth_user = models.ForeignKey(AuthUser, on_delete=models.CASCADE, null=True, blank=True)
+    firms = models.CharField('Фирма автомобиля', default="", max_length=40)
+    mark = models.CharField('Марка автомобиля', default="", max_length=255)
 
     class Meta:
-        managed = False
-        db_table = 'orders'
+        db_table = 'cars'
 
-
-class OrdersMachineTools(models.Model):
-    order = models.OneToOneField(Orders, models.DO_NOTHING, primary_key=True)
-    machine_tool = models.ForeignKey(MachineTools, models.DO_NOTHING, to_field=None)
-    quantity = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'orders_machine tools'
-
-
-class OrdersMaterials(models.Model):
-    order = models.OneToOneField(Orders, models.DO_NOTHING, primary_key=True)
-    materials = models.ForeignKey(Materials, models.DO_NOTHING, to_field=None)
-
-    class Meta:
-        managed = False
-        db_table = 'orders_materials'
+    def __str__(self):
+        return f'{self.car_number}'
 
 
 class Records(models.Model):
-    car = models.ForeignKey(Cars, on_delete=models.CASCADE)
-    date = models.DateField('Дата записи')
+    car = models.ForeignKey(Cars, on_delete=models.CASCADE, null=True, blank=True)
+    date = models.DateTimeField('Дата записи')
     description = models.TextField('Описание проблемы')
 
     class Meta:
         db_table = 'records'
+
+    def __str__(self):
+        return f'{self.date}'
+
+
+class Orders(models.Model):
+    auth_user = models.ForeignKey(AuthUser, on_delete=models.CASCADE, null=True, blank=True)
+    record = models.ForeignKey(Records, on_delete=models.CASCADE, null=True, blank=True)
+    completed_work = models.TextField('Выполненная работа', default="")
+    price = models.IntegerField('Стоимость работы')
+
+    class Meta:
+        db_table = 'orders'

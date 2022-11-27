@@ -22,6 +22,7 @@ INSTALLED_APPS = [
 
     'main',
     'record',
+    'orders',
     'core.apps.CoreConfig',
     'django.contrib.admin',
     'django.contrib.auth',
