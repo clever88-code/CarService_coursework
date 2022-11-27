@@ -7,6 +7,6 @@ from .views import RecordView, RecordFormView, add_record_view
 app_name = "record"
 
 urlpatterns = [
-    path('', RecordView.as_view(), name="record"),
-    path('add-record', add_record_view, name='add_record')
+    path('add-record', add_record_view, name='add_record'),
+    path('', RecordView.as_view(), name="record")
 ]
