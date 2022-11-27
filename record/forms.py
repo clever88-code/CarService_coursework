@@ -30,10 +30,14 @@ class RecordForm(forms.ModelForm):
     #        bill = Bill.objects.get(form.cleaned_data['pk'])
     # else:
     #    form = BillSelectForm()
-    def __init__(self, user_id, *args, **kwargs):
+    def __init__(self, user_id=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['description'].widget.attrs.update({'placeholder': 'Введите описание проблемы', 'rows': '2'})
-        self.fields['car'].queryset = Cars.objects.filter(auth_user_id=user_id)
+        print(user_id)
+        if user_id:
+            self.fields['car'].queryset = Cars.objects.filter(auth_user_id=user_id)
+        else:
+            self.fields['car'].queryset = Cars.objects.all()
 
     class Meta:
         model = Records

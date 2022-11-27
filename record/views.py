@@ -67,7 +67,17 @@ class RecordFormView(FormView):
 
 def add_record_view(request):
     if request.POST:
-        form = RecordForm(request.POST)
+        form = RecordForm(data=request.POST)
         if form.is_valid():
             form.save()
+    return redirect('/record/')
+
+
+def add_car_view(request):
+    if request.POST:
+        form = CarForm(data=request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.auth_user_id = request.user.id
+            obj.save()
     return redirect('/record/')
