@@ -163,6 +163,7 @@ class Cars(models.Model):
     mark = models.CharField('Марка автомобиля', default="", max_length=255)
 
     class Meta:
+        managed = False
         db_table = 'cars'
 
     def __str__(self):
@@ -175,6 +176,7 @@ class Records(models.Model):
     description = models.TextField('Описание проблемы')
 
     class Meta:
+        managed = False
         db_table = 'records'
 
     def __str__(self):
@@ -188,4 +190,5 @@ class Orders(models.Model):
     price = models.IntegerField('Стоимость работы')
 
     class Meta:
+        managed = False
         db_table = 'orders'
