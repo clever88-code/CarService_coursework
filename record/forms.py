@@ -15,7 +15,6 @@ class CarForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['car_number'].widget.attrs.update({'placeholder': 'Введите гос.номер'})
-        self.fields['firms'].widget.attrs.update({'placeholder': 'Введите название фирмы'})
         self.fields['mark'].widget.attrs.update({'placeholder': 'Введите марку автомибиля'})
 
     class Meta:
@@ -33,6 +32,7 @@ class RecordForm(forms.ModelForm):
     def __init__(self, user_id=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['description'].widget.attrs.update({'placeholder': 'Введите описание проблемы', 'rows': '2'})
+        
         print(user_id)
         if user_id:
             self.fields['car'].queryset = Cars.objects.filter(auth_user_id=user_id)
