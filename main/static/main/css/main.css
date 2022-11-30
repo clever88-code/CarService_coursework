@@ -57,3 +57,19 @@
     padding-left: 0;
 }
 
+
+.footer {
+    background-color: rgb(90, 185, 101);
+     position: fixed;
+     right: 0;
+     bottom: 0;
+     text-align: center; 
+     width: 99%;   
+     font-size: 15px;
+  font-weight: bold;
+    color: #fafaff;  
+}
+
+.card-text{
+    background-color: rgb(240, 88, 0);
+}

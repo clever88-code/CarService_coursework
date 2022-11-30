@@ -165,6 +165,8 @@ class Cars(models.Model):
     class Meta:
         managed = False
         db_table = 'cars'
+        verbose_name = 'автомобиль'
+        verbose_name_plural = 'Список автомобилей'
 
     def __str__(self):
         return f'{self.car_number}'
@@ -178,6 +180,8 @@ class Records(models.Model):
     class Meta:
         managed = False
         db_table = 'records'
+        verbose_name = 'запись'
+        verbose_name_plural = 'Записи'
 
     def __str__(self):
         return f'{self.date}'
@@ -192,3 +196,5 @@ class Orders(models.Model):
     class Meta:
         managed = False
         db_table = 'orders'
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы Выполненые'
