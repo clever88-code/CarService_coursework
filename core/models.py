@@ -156,24 +156,10 @@ class Materials(models.Model):
 #         managed = False
 #         db_table = 'orders_materials'
 
-
-class Marks(models.Model):
-    mark_avto = models.TextField('Добовления марки автомобиля')
-
-    class Meta:
-        managed = False
-        db_table = 'marks'
-        verbose_name = 'Модель автомобиля'
-        verbose_name_plural = 'Записи'
-
-
-
-
-
 class Cars(models.Model):
     car_number = models.CharField('Номера автомобиля', default="", max_length=9)
     auth_user = models.ForeignKey(AuthUser, on_delete=models.CASCADE, null=True, blank=True)
-    firms = models.ForeignKey(Marks, on_delete=models.CASCADE, null=True, blank=True,verbose_name ="Выберите фирму автомобиля")
+    firms = models.CharField('Фирма автомобиля', default="", max_length=40)
     mark = models.CharField('Марка автомобиля', default="", max_length=255)
 
     class Meta:
@@ -187,7 +173,7 @@ class Cars(models.Model):
 
 
 class Records(models.Model):
-    car = models.ForeignKey(Cars, on_delete=models.CASCADE, null=True, blank=True,verbose_name ="Выберите номер автомобиля")
+    car = models.ForeignKey(Cars, on_delete=models.CASCADE, null=True, blank=True, verbose_name = 'Выберите свой автомобиль(гос номер)')
     date = models.DateTimeField('Дата записи')
     description = models.TextField('Описание проблемы')
 
@@ -203,7 +189,7 @@ class Records(models.Model):
 
 class Orders(models.Model):
     auth_user = models.ForeignKey(AuthUser, on_delete=models.CASCADE, null=True, blank=True)
-    record = models.ForeignKey(Records, on_delete=models.CASCADE, null=True, blank=True, verbose_name ="Выберите запись человека")
+    record = models.ForeignKey(Records, on_delete=models.CASCADE, null=True, blank=True,verbose_name = 'Выберите время клиета')
     completed_work = models.TextField('Выполненная работа', default="")
     price = models.IntegerField('Стоимость работы')
 
@@ -212,10 +198,3 @@ class Orders(models.Model):
         db_table = 'orders'
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы Выполненые'
-
-
-
-
-
-
-
