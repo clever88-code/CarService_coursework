@@ -13,3 +13,11 @@ function itemFormRow ()
         item.classList.add('mx-3')
     })
 }
+
+function clicks(){
+    alert('Успешно добавлено!')
+}
+
+function record(){
+    alert('Записано')
+}

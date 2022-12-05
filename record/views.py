@@ -14,14 +14,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
 import telebot
 
-token = "5948617624:AAHk3AaEtMwANEwWLBdACn9kgV09Vk9iOSs"
 
-chat_id = '1015269507'
 
 
 class RecordView(TemplateView):
     template_name = 'record.html'
-    bot = telebot.TeleBot(token)
+
 
     def get(self, request, *args, **kwargs):
         car_form = CarForm
@@ -37,15 +35,13 @@ class CarFormView(FormView):
     template_name = 'record.html'
     form_class = CarForm
     success_url = '/record'
-    bot = telebot.TeleBot(token)
+
 
     def form_valid(self, form):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.auth_user_id = self.request.user.id
-            obj.save()
-            bot = telebot.TeleBot(token)
-            bot.send_message(chat_id=chat_id, text='Добавлен автомобиль!🔥🔥🔥')
+
 
         return super().form_valid(form)
 
@@ -54,15 +50,7 @@ class RecordFormView(FormView):
     template_name = 'record.html'
     form_class = RecordForm
     success_url = reverse_lazy('record:record')
-    bot = telebot.TeleBot(token)
 
-    # def form_valid(self, form):
-    #     print('asdasd')
-    #     if form.is_valid():
-    #         bot = telebot.TeleBot(token)
-    #         bot.send_message(chat_id=chat_id, text='Есть заполненная запись!🔥🔥🔥')
-    #
-    #     return super().form_valid(form)
 
 
 def add_record_view(request):
